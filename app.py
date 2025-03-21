@@ -13,7 +13,7 @@ from dash import Dash, Input, Output, dcc, html
 
 from components.filtering import data_year_slider
 
-# Import z paczek z aplikacji
+# Import from packages from the application
 from components.static import navbar
 from data.external import data_gapminder_df
 from graphs.templates import (
@@ -23,11 +23,13 @@ from graphs.templates import (
     scatter_gdpPercap,
 )
 
-# Tworzenie aplikacji Dash-owej
-app = Dash(__name__, external_stylesheets=[dbc.themes.CYBORG])
+# Creating a Dash App
+app = Dash(__name__, external_stylesheets=["/assets/css/style.css",
+                                            "https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap",
+                                            dbc.themes.CYBORG])
 
 
-# Wyglad aplikacji (layout)
+# Layout
 app.layout = navbar,dbc.Container(
     fluid=True,
     children=
@@ -40,6 +42,7 @@ app.layout = navbar,dbc.Container(
                 dbc.Col(data_year_slider(), xs=12, sm=8, md=9, lg=10),
             ],
             justify="center",
+            className="custom-row-container"
         ),
         dbc.Row(
             [
@@ -59,6 +62,7 @@ app.layout = navbar,dbc.Container(
                 dbc.Col(html.H5(id="outpout_cointener", children=[]), xs=3, sm=3, md=3, lg=3),
             ],
             justify="center",
+            className="custom-row-container"
         ),
         dbc.Row(
             [
@@ -70,7 +74,7 @@ app.layout = navbar,dbc.Container(
     ],
 )
 
-# Callback dal wykresow z gory (1, 2)
+# Callback for top charts (1, 2)
 @app.callback(
     Output("choropleth-world-col", "children"),
     Output("scatter-gdpPercap-col", "children"),
@@ -81,7 +85,7 @@ def update_graphs(selected_year: List[float]):
     return (choropleth_world(selected_year), scatter_gdpPercap(selected_year))
 
 
-# Callback dla wykresow z dolu (3, 4)
+# Callback for charts from below (3, 4)
 @app.callback(
     Output("line-country-col", component_property="children"),
     Output("bar-country-col", component_property="children"),
@@ -99,7 +103,8 @@ def update_graphs_3_and_4(clickData: dict):
     return (line_country(clickData), bar_country(clickData), container)
 
 
-# Zabezpieczenie -> uruchominie wylacznie gdy python-to-this-file.py
-server = app.server  # <- Dodanie dla Render.com - Gunicorn
+# Added for Render.com - Gunicorn
+server = app.server
 if __name__ == "__main__":
-    app.run_server(port=8062, debug=True)
+    # app.run_server(port=8062, debug=True)
+    app.run_server(port=8000, debug=True)

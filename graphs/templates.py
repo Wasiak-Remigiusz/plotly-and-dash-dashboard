@@ -6,7 +6,7 @@ from dash import dcc
 from data.external import data_gapminder_df
 
 
-# Funkcja, ktora tworzy kartogram
+# Function that creates a cartogram
 def choropleth_world(selected_year: List[float] = None) -> dcc.Graph:
     df = data_gapminder_df()
     if selected_year is not None:
@@ -30,7 +30,7 @@ def choropleth_world(selected_year: List[float] = None) -> dcc.Graph:
             color_continuous_scale=px.colors.sequential.Plasma,
             template="plotly_dark",
             # width=1200,
-            height=800,
+            height=650,
             title="Life Expectancy",
             hover_data={
                 "iso_alpha": False,
@@ -42,7 +42,7 @@ def choropleth_world(selected_year: List[float] = None) -> dcc.Graph:
     )
 
 
-# Funkcja, ktora tworzy wykres z Logarytmem
+# Function that creates a graph with the logarithm
 def scatter_gdpPercap(selected_year: List[float] = None) -> dcc.Graph:
     df = data_gapminder_df()
     if selected_year is not None:
@@ -65,7 +65,7 @@ def scatter_gdpPercap(selected_year: List[float] = None) -> dcc.Graph:
             size_max=60,
             template="plotly_dark",
             # width=1200,
-            height=600,
+            height=650,
             category_orders={
                 "continent": ["Africa", "Americas", "Asia", "Europe", "Oceania"]
             },
@@ -74,7 +74,7 @@ def scatter_gdpPercap(selected_year: List[float] = None) -> dcc.Graph:
     )
 
 
-# Funkcja, ktora tworzy wykres liniowy, ktory pokazuje GDP per Capita
+# Function that creates a line graph that shows GDP per Capita
 def line_country(clickData: dict = None) -> dcc.Graph:
 
     df = data_gapminder_df()
@@ -101,7 +101,7 @@ def line_country(clickData: dict = None) -> dcc.Graph:
     )
 
 
-# Funkcja, ktora tworzy wykres kolumnowy, ktory pokazuje populacje
+# Function that creates a column chart that shows the population
 def bar_country(clickData: dict = None) -> dcc.Graph:
 
     df = data_gapminder_df()
