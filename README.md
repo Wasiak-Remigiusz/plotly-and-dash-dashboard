@@ -26,7 +26,7 @@ The goal of this project is to develop a **user-friendly dashboard** that enable
 
 This dashboard can be utilized in:
 
-- **Schools and universities** (e.g., economics departments)
+- **Schools and universities** (e.g. economics departments)
 - **Businesses** for market research
 - **Self-learning and research**
 
