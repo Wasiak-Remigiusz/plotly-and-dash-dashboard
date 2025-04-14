@@ -25,6 +25,17 @@ body {
   /* font-weight: bold; */
 }
 
+@media (max-width: 576px) {
+  .nav-title {
+    font-size: 1.5rem;
+    /* font-weight: bold; */
+  }
+  .second-logo {
+    height: 40px;
+    width: auto;
+  }
+}
+
 .custom-row-container {
   margin: 10px;
   display: flex;
